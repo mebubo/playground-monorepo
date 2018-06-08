@@ -19,13 +19,10 @@ final case class WorldView(
 )
 
 final class DynAgents[F[_]](D: Drone[F], M: Machines[F])(implicit F: Monad[F]) {
-  def initial0: F[WorldView] = for {
-    db <- D.getBacklog
-    da <- D.getAgents
-    mm <- M.getManaged
-    ma <- M.getAlive
-    mt <- M.getTime
-  } yield WorldView(db, da, mm, ma, Map.empty, mt)
+  def initial: F[WorldView] =
+    ^^^^(D.getBacklog, D.getAgents, M.getManaged, M.getAlive, M.getTime) {
+      case (db, da, mm, ma, mt) => WorldView(db, da, mm, ma, Map.empty, mt)
+    }
 
   def update(old: WorldView): F[WorldView] = for {
     snap <- initial
@@ -41,6 +38,10 @@ final class DynAgents[F[_]](D: Drone[F], M: Machines[F])(implicit F: Monad[F]) {
         _ <- M.start(node)
       } yield world.copy(pending = Map(node -> world.time))
     case Stale(nodes) => nodes.foldLeftM(world) { (world, n) =>
+      for {
+        stopped <- nodes.traverse(M.stop)
+        updates = stopped.map(_ -> world.time).toList.toMap
+      } yield world.copy(pending = world.pending ++ updates)
       for {
         _ <- M.stop(n)
       } yield world.copy(pending = world.pending + (n -> world.time))
