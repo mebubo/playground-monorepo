@@ -9,6 +9,8 @@ scalacOptions in ThisBuild ++= Seq(
 libraryDependencies ++= Seq(
   "com.github.mpilquist" %% "simulacrum" % "0.12.0",
   "org.scalaz" %% "scalaz-core" % "7.2.22",
+  "eu.timepit" %% "refined-scalaz" % "0.9.0",
+  "xyz.driver" %% "spray-json-derivation" % "0.4.5",
   "org.scalatest" %% "scalatest" % "3.0.5" % "test"
 )
 

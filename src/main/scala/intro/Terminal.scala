@@ -1,3 +1,7 @@
+package intro
+
+import intro.Types2.Now
+
 import scala.concurrent.Future
 
 trait Terminal[C[_]] {
@@ -8,8 +12,6 @@ trait Terminal[C[_]] {
 object Types2 {
   type Now[X] = X
 }
-
-import Types2._
 
 object TerminalSync extends Terminal[Now] {
   override def read: String = ???
@@ -35,7 +37,7 @@ object Monad {
   }
 }
 
-import Monad._
+import intro.Monad._
 
 object TerminalOps {
   def echo[C[_]](t: Terminal[C], e: Monad[C]): C[String] = {

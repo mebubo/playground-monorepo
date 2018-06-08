@@ -1,3 +1,7 @@
+package intro
+
+import intro.Types.{EitherString, Id}
+
 import scala.language.higherKinds
 
 trait Foo[C[_], A] {
@@ -12,8 +16,6 @@ object Types {
   type EitherString[T] = Either[String, T]
   type Id[T] = T
 }
-
-import Types._
 
 object FooEitherString extends Foo[EitherString, Int] {
   def create(i: Int): Either[String, Int] = Right(i)
