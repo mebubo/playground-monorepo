@@ -36,8 +36,8 @@ class Mutable(state: WorldView) {
     override def getTime: Instant = state.time
     override def getManaged: NonEmptyList[MachineNode] = state.managed
     override def getAlive: Map[MachineNode, Instant] = state.alive
-    override def start(node: MachineNode): MachineNode = { started += 1; node }
-    override def stop(node: MachineNode): MachineNode = { stopped += 1; node }
+    override def start(node: MachineNode): Unit = { started += 1 }
+    override def stop(node: MachineNode): Unit = { stopped += 1 }
   }
 
   val program = new DynAgents[Id](D, M)

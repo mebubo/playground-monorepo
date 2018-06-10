@@ -34,12 +34,10 @@ final class DynAgents[F[_]](D: Drone[F], M: Machines[F])(implicit F: Monad[F]) {
   } yield update
 
   def act(world: WorldView): F[WorldView] = world match {
-    case NeedsAgent(node) => for {
-        _ <- M.start(node)
-      } yield world.copy(pending = Map(node -> world.time))
+    case NeedsAgent(node) => M.start(node) as world.copy(pending = Map(node -> world.time))
     case Stale(nodes) => nodes.foldLeftM(world) { (world, n) =>
       for {
-        stopped <- nodes.traverse(M.stop)
+        stopped <- nodes.traverse(a => M.stop(a) as a)
         updates = stopped.map(_ -> world.time).toList.toMap
       } yield world.copy(pending = world.pending ++ updates)
       for {

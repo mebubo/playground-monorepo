@@ -14,7 +14,7 @@ trait Machines[F[_]] {
   def getTime: F[Instant]
   def getManaged: F[NonEmptyList[MachineNode]]
   def getAlive: F[Map[MachineNode, Instant]]
-  def start(node: MachineNode): F[MachineNode]
-  def stop(node: MachineNode): F[MachineNode]
+  def start(node: MachineNode): F[Unit]
+  def stop(node: MachineNode): F[Unit]
 }
 
