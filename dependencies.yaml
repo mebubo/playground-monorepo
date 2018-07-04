@@ -1,0 +1,43 @@
+options:
+  buildHeader: [ "load(\"@io_bazel_rules_scala//scala:scala_import.bzl\", \"scala_import\")",
+  "load(\"@io_bazel_rules_scala//scala:scala.bzl\", \"scala_library\", \"scala_binary\", \"scala_test\")" ]
+  languages: [ "java", "scala:2.11.12"  ]
+  resolverType: coursier
+
+dependencies:
+  org.tpolecat:
+    doobie:
+      version: "0.5.3"
+      lang: scala
+      modules: [ "core", "postgres", "specs2" ]
+
+  org.xerial:
+    sqlite-jdbc:
+      version: "3.23.1"
+      lang: java
+
+  org.typelevel:
+    cats:
+      lang: scala
+      modules: [ "free", "kernel", "macros" ]
+      version: "1.1.0"
+    cats-core:
+      exports:
+        - "org.typelevel:cats-kernel"
+      lang: scala
+      version: "1.1.0"
+    cats-effect:
+      lang: scala
+      version: "0.10.1"
+
+replacements:
+  org.scala-lang:
+    scala-compiler:
+      lang: scala/unmangled
+      target: "@io_bazel_rules_scala_scala_compiler//:io_bazel_rules_scala_scala_compiler"
+    scala-library:
+      lang: scala/unmangled
+      target: "@io_bazel_rules_scala_scala_library//:io_bazel_rules_scala_scala_library"
+    scala-reflect:
+      lang: scala/unmangled
+      target: "@io_bazel_rules_scala_scala_reflect//:io_bazel_rules_scala_scala_reflect"

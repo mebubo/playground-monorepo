@@ -1,0 +1,8 @@
+bazel-bin
+bazel-genfiles
+bazel-out
+bazel-playground-monorepo
+bazel-testlogs
+.idea/
+target/
+project/
