@@ -3,13 +3,14 @@ options:
   "load(\"@io_bazel_rules_scala//scala:scala.bzl\", \"scala_library\", \"scala_binary\", \"scala_test\")" ]
   languages: [ "java", "scala:2.11.12"  ]
   resolverType: coursier
+  # transitivity: runtime_deps
 
 dependencies:
   org.tpolecat:
     doobie:
       version: "0.5.3"
       lang: scala
-      modules: [ "core", "postgres", "specs2" ]
+      modules: [ "core", "free", "postgres", "specs2" ]
 
   org.xerial:
     sqlite-jdbc:

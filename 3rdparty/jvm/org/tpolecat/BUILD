@@ -31,7 +31,7 @@ scala_import(
         "//external:jar/org/tpolecat/doobie_free_2_11"
     ],
     visibility = [
-        "//3rdparty/jvm:__subpackages__"
+        "//visibility:public"
     ]
 )
 

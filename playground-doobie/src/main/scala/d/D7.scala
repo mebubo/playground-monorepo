@@ -1,6 +1,6 @@
 package d
 
-object D07 {
+object D7 {
 
   import doobie._
   import doobie.implicits._
