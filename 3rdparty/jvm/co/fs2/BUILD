@@ -32,3 +32,20 @@ scala_import(
 )
 
 
+
+scala_import(
+    name = "fs2_scodec",
+    exports = [
+        "//3rdparty/jvm/org/scala_lang:scala_library",
+        "//3rdparty/jvm/org/scodec:scodec_bits",
+        ":fs2_core"
+    ],
+    jars = [
+        "//external:jar/co/fs2/fs2_scodec_2_11"
+    ],
+    visibility = [
+        "//3rdparty/jvm:__subpackages__"
+    ]
+)
+
+

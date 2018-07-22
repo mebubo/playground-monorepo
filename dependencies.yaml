@@ -31,6 +31,12 @@ dependencies:
       lang: scala
       version: "0.10.1"
 
+  org.http4s:
+    http4s:
+      lang: scala
+      modules: ["dsl", "blaze-server", "blaze-client"]
+      version: "0.18.12"
+
 replacements:
   org.scala-lang:
     scala-compiler:
