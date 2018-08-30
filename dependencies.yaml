@@ -37,6 +37,12 @@ dependencies:
       modules: ["dsl", "blaze-server", "blaze-client"]
       version: "0.18.12"
 
+  co.fs2:
+    fs2:
+      version: "0.10.5"
+      lang: scala
+      modules: ["core"]
+
 replacements:
   org.scala-lang:
     scala-compiler:

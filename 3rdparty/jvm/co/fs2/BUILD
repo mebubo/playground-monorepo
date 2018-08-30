@@ -11,7 +11,7 @@ scala_import(
         "//external:jar/co/fs2/fs2_core_2_11"
     ],
     visibility = [
-        "//3rdparty/jvm:__subpackages__"
+        "//visibility:public"
     ]
 )
 
