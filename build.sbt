@@ -16,6 +16,11 @@ val http4sBlazeClient = "org.http4s" %% "http4s-blaze-client" % http4sVersion
 val magnolia =  "com.propensive" %% "magnolia" % "0.7.1"
 val catsCore = "org.typelevel" %% "cats-core" % "1.1.0"
 val shapeless =   "com.chuusai" %% "shapeless" % "2.3.3"
+val simulacrum = "com.github.mpilquist" %% "simulacrum" % "0.12.0"
+val scalazCore = "org.scalaz" %% "scalaz-core" % "7.2.22"
+val refinedScalaz = "eu.timepit" %% "refined-scalaz" % "0.9.0"
+val sprayJsonDerivation = "xyz.driver" %% "spray-json-derivation" % "0.4.5"
+val scalatest = "org.scalatest" %% "scalatest" % "3.0.5" % "test"
 
 def p(n: String, deps: Seq[ModuleID]): Project = {
   Project(n, file(n))
@@ -35,7 +40,8 @@ lazy val root = project
     magnoliaPlayground,
     scalaWithCats,
     shapelessPlayground,
-    essentialScala
+    essentialScala,
+    fpmortals
   )
 
 lazy val doobie = p(
@@ -84,3 +90,25 @@ lazy val essentialScala = p(
   Seq(
   )
 )
+
+lazy val fpmortals = project
+  .in(file("playground-fpmortals"))
+  .enablePlugins(ReproducibleBuildsPlugin)
+  .enablePlugins(PackPlugin)
+  .settings(
+    name := "playground-fpmortals",
+    libraryDependencies ++= Seq(
+      simulacrum,
+      scalazCore,
+      refinedScalaz,
+      sprayJsonDerivation,
+      scalatest
+    ),
+    addCompilerPlugin("org.spire-math" %% "kind-projector" % "0.9.6"),
+    addCompilerPlugin("org.scalamacros" % "paradise" % "2.1.1" cross CrossVersion.full),
+    scalacOptions ++= Seq(
+      "-language:_",
+      "-Ypartial-unification",
+      "-Xfatal-warnings"
+    )
+  )
