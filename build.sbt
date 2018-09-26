@@ -1,6 +1,9 @@
 scalaVersion in ThisBuild := "2.12.6"
-scalacOptions in ThisBuild += "-Ypartial-unification"
 
+scalacOptions in ThisBuild ++= Seq(
+  "-Xfatal-warnings",
+  "-Ypartial-unification"
+)
 val doobieVersion = "0.5.3"
 val http4sVersion = "0.18.12"
 
@@ -15,6 +18,8 @@ val http4sBlazeClient = "org.http4s" %% "http4s-blaze-client" % http4sVersion
 
 val magnolia =  "com.propensive" %% "magnolia" % "0.7.1"
 
+val catsCore = "org.typelevel" %% "cats-core" % "1.1.0"
+
 def p(n: String, deps: Seq[ModuleID]): Project = {
   Project(n, file(n))
     .settings(
@@ -28,7 +33,8 @@ lazy val root = project
   .aggregate(
     doobie,
     http4s,
-    magnoliaPlayground
+    magnoliaPlayground,
+    scalaWithCats
   )
 
 lazy val doobie = p(
@@ -54,5 +60,12 @@ lazy val magnoliaPlayground = p(
   "playground-magnolia",
   Seq(
     magnolia
+  )
+)
+
+lazy val scalaWithCats = p(
+  "playground-scala-with-cats",
+  Seq(
+    catsCore
   )
 )
