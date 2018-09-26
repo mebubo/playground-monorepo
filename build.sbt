@@ -1,5 +1,4 @@
 scalaVersion in ThisBuild := "2.12.6"
-
 scalacOptions in ThisBuild += "-Ypartial-unification"
 
 val doobieVersion = "0.5.3"
@@ -14,10 +13,14 @@ val http4sDsl = "org.http4s" %% "http4s-dsl" % http4sVersion
 val http4sBlazeServer = "org.http4s" %% "http4s-blaze-server" % http4sVersion
 val http4sBlazeClient = "org.http4s" %% "http4s-blaze-client" % http4sVersion
 
-scalacOptions ++= Seq("-Ypartial-unification")
+val magnolia =  "com.propensive" %% "magnolia" % "0.7.1"
+
 lazy val root = project
     .in(file("."))
-    .aggregate(doobie, http4s)
+    .aggregate(
+        doobie,
+        http4s
+    )
 
 lazy val doobie = project
     .in(file("playground-doobie"))
@@ -39,5 +42,14 @@ lazy val http4s = project
             http4sDsl,
             http4sBlazeServer,
             http4sBlazeClient
+        )
+    )
+
+lazy val magnoliaPlayground = project
+    .in(file("playground-magnolia"))
+    .settings(
+        name := "playground-magnolia",
+        libraryDependencies ++= Seq(
+            magnolia
         )
     )
