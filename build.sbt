@@ -22,6 +22,8 @@ val catsCore = "org.typelevel" %% "cats-core" % "1.1.0"
 
 def p(n: String, deps: Seq[ModuleID]): Project = {
   Project(n, file(n))
+    .enablePlugins(ReproducibleBuildsPlugin)
+    .enablePlugins(PackPlugin)
     .settings(
       name := n,
       libraryDependencies ++= deps
