@@ -1,7 +1,7 @@
 scalaVersion in ThisBuild := "2.12.6"
 
 scalacOptions in ThisBuild ++= Seq(
-  "-Xfatal-warnings",
+  /* "-Xfatal-warnings", */
   "-Ypartial-unification"
 )
 val doobieVersion = "0.5.3"
@@ -20,6 +20,8 @@ val magnolia =  "com.propensive" %% "magnolia" % "0.7.1"
 
 val catsCore = "org.typelevel" %% "cats-core" % "1.1.0"
 
+val shapeless =   "com.chuusai" %% "shapeless" % "2.3.3"
+
 def p(n: String, deps: Seq[ModuleID]): Project = {
   Project(n, file(n))
     .enablePlugins(ReproducibleBuildsPlugin)
@@ -36,7 +38,8 @@ lazy val root = project
     doobie,
     http4s,
     magnoliaPlayground,
-    scalaWithCats
+    scalaWithCats,
+    shapelessPlayground
   )
 
 lazy val doobie = p(
@@ -69,5 +72,13 @@ lazy val scalaWithCats = p(
   "playground-scala-with-cats",
   Seq(
     catsCore
+  )
+)
+
+lazy val shapelessPlayground = p(
+  "playground-shapeless",
+  Seq(
+    catsCore,
+    shapeless
   )
 )
