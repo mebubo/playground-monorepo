@@ -91,19 +91,17 @@ lazy val essentialScala = p(
   )
 )
 
-lazy val fpmortals = project
-  .in(file("playground-fpmortals"))
-  .enablePlugins(ReproducibleBuildsPlugin)
-  .enablePlugins(PackPlugin)
+lazy val fpmortals = p(
+  "playground-fpmortals",
+  Seq(
+    simulacrum,
+    scalazCore,
+    refinedScalaz,
+    sprayJsonDerivation,
+    scalatest
+  )
+)
   .settings(
-    name := "playground-fpmortals",
-    libraryDependencies ++= Seq(
-      simulacrum,
-      scalazCore,
-      refinedScalaz,
-      sprayJsonDerivation,
-      scalatest
-    ),
     addCompilerPlugin("org.spire-math" %% "kind-projector" % "0.9.6"),
     addCompilerPlugin("org.scalamacros" % "paradise" % "2.1.1" cross CrossVersion.full),
     scalacOptions ++= Seq(
