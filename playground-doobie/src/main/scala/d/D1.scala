@@ -6,8 +6,12 @@ import cats._
 import cats.effect._
 import cats.implicits._
 import doobie.util.transactor.Transactor.Aux
+import scala.concurrent.ExecutionContext
 
 object D1 {
+
+  implicit val cs = IO.contextShift(ExecutionContext.global)
+
   val program1: ConnectionIO[Int] = 42.pure[ConnectionIO]
 
   val program2: ConnectionIO[Int] = sql"select 42".query[Int].unique

@@ -1,5 +1,7 @@
 package d
 
+import scala.concurrent.ExecutionContext
+
 object D7 {
 
   import doobie._
@@ -8,6 +10,8 @@ object D7 {
   import cats.data._
   import cats.effect.IO
   import cats.implicits._
+
+  implicit val cs = IO.contextShift(ExecutionContext.global)
 
   val xa = Transactor.fromDriverManager[IO]("org.postgresql.Driver", "jdbc:postgresql:world", "me", "me")
 

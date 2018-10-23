@@ -4,8 +4,8 @@ scalacOptions in ThisBuild ++= Seq(
   /* "-Xfatal-warnings", */
   "-Ypartial-unification"
 )
-val doobieVersion = "0.5.3"
-val http4sVersion = "0.18.12"
+val doobieVersion = "0.6.0"
+val http4sVersion = "0.19.0-M4"
 val doobieCore = "org.tpolecat" %% "doobie-core" % doobieVersion
 val doobiePostgres = "org.tpolecat" %% "doobie-postgres" % doobieVersion
 val doobieSpecs2 = "org.tpolecat" %% "doobie-specs2" % doobieVersion
@@ -13,11 +13,12 @@ val sqliteJdbc = "org.xerial" % "sqlite-jdbc" % "3.23.1"
 val http4sDsl = "org.http4s" %% "http4s-dsl" % http4sVersion
 val http4sBlazeServer = "org.http4s" %% "http4s-blaze-server" % http4sVersion
 val http4sBlazeClient = "org.http4s" %% "http4s-blaze-client" % http4sVersion
-val magnolia =  "com.propensive" %% "magnolia" % "0.7.1"
-val catsCore = "org.typelevel" %% "cats-core" % "1.1.0"
+val magnolia =  "com.propensive" %% "magnolia" % "0.9.1"
+val catsCore = "org.typelevel" %% "cats-core" % "1.4.0"
+val catsMtl = "org.typelevel" %% "cats-mtl-core" % "0.4.0"
 val shapeless =   "com.chuusai" %% "shapeless" % "2.3.3"
 val simulacrum = "com.github.mpilquist" %% "simulacrum" % "0.12.0"
-val scalazCore = "org.scalaz" %% "scalaz-core" % "7.2.22"
+val scalazCore = "org.scalaz" %% "scalaz-core" % "7.2.26"
 val refinedScalaz = "eu.timepit" %% "refined-scalaz" % "0.9.0"
 val sprayJsonDerivation = "xyz.driver" %% "spray-json-derivation" % "0.4.5"
 val scalatest = "org.scalatest" %% "scalatest" % "3.0.5" % "test"

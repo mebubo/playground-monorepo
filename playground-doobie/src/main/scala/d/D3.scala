@@ -6,8 +6,12 @@ import cats._
 import cats.data._
 import cats.effect.IO
 import cats.implicits._
+import scala.concurrent.ExecutionContext
 
 object D3 {
+
+  implicit val cs = IO.contextShift(ExecutionContext.global)
+
   val xa = Transactor.fromDriverManager[IO]("org.postgresql.Driver", "jdbc:postgresql:world", "me", "me")
   val y = xa.yolo
 

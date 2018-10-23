@@ -5,7 +5,11 @@ import doobie._
 import doobie.implicits._
 import fs2.Stream
 
+import scala.concurrent.ExecutionContext
+
 object D2 {
+
+  implicit val cs = IO.contextShift(ExecutionContext.global)
 
   case class Country(code: String, name: String, pop: Int, gnp: Option[Double])
   case class Code(code: String)
