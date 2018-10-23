@@ -111,3 +111,11 @@ lazy val fpmortals = p(
       "-Xfatal-warnings"
     )
   )
+
+lazy val mtl = p(
+  "playground-mtl",
+  Seq(
+    catsCore,
+    catsMtl
+  )
+)

@@ -1,0 +1,7 @@
+package m
+
+object m {
+
+
+
+}
